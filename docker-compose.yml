@@ -1,0 +1,30 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+networks:
+  db-network:
+    driver: bridge
+
+services:
+
+  demo:
+    image: classmates
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - db-network
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - db-network
+

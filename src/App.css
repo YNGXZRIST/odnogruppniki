@@ -1,38 +1,286 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Open+Sans:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Content&display=swap');
+.body {
+  background: #E5E5E5;
+  width: 100vw;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.woman {
+  position: absolute;
+  width: 667px;
+  height: 667px;
+  left: -9px;
+  margin-left: 26px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.register {
+  position: absolute;
+  width: 426px;
+  height: 624px;
+
+  background: #FFFFFF;
+  border: 1px solid #EDE5E5;
+  box-sizing: border-box;
+  border-radius: 10px;
+  margin: 37px 23px 124px 829px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.title {
+  width: 426px;
+  height: 50px;
   display: flex;
-  flex-direction: column;
+  position: absolute;
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 45px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: flex-start;
+  color: #000000;
+  margin-top: 73px;
+  justify-content: space-evenly;
+}
+.entrance{
+  width: 100px;
+  height: 52px;
+  /*margin-top: 142px;*/
+  /*margin-left: 68px;*/
+  font-family: 'Content';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 52px;
+  /* identical to box height */
+
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  text-align: center;
 
-.App-link {
-  color: #61dafb;
+  color: #000000;
 }
+.buttonEnter{
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  width: 100px;
+  height: 52px;
+  display: flex;
+
+  margin-top: 142px;
+  margin-left: 68px;
+  flex-direction: column-reverse;
+}
+.borderEnter{
+  border: 1px solid #000000;
+  transform: rotate(-0.17deg);
+  position: absolute;
+  width: 100px;
+  height: 0px;
+  /*margin-left: 53px;*/
+
+}
+.buttonRegister_registerPage{
+
+}
+.buttonRegister{
+
+
+  height: 52px;
+  display: flex;
+
+
+  margin-top: 142px;
+
+  flex-direction: column-reverse;
+  width: 100%;
+}
+.buttonMenu{
+  display: flex;
+  margin-right: 59px;
+}
+.registrationTitle{
+  margin-left: 0;
+  font-family: 'Content';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 52px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #A59C9C;
+
+}
+.borderRegisterRegistrationPage{
+  border: 1px solid #000000;
+  transform: rotate(-0.17deg);
+  position: absolute;
+  width: 197px;
+}
+.borderEnterRegistrationPage{
+  border: 1px solid #A59C9C;
+  transform: rotate(-0.17deg);
+  position: absolute;
+  width: 100px;
+  height: 0px;
+}
+.borderRegister{
+  border: 1px solid #A59C9C;
+  transform: rotate(-0.17deg);
+  position: absolute;
+  width: 197px;
+
+  /*margin-left: 53px;*/
+
+}
+.helper{
+  margin-top: 30px;
+  margin-left: 68px;
+}
+.enterNameInput{
+  position: absolute;
+  width: 297px;
+  height: 40px;
+  font-size: 20px;
+  padding-left: 10px;
+  background: rgba(246, 246, 246, 0.4);
+  border: 0.25px solid #000000;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+.nameTitle{
+  font-family: 'Content';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #464545;
+}
+.userPasswordBox{
+  margin-top: 50px;
+}
+.passwordTitle{
+  font-family: 'Content';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #464545;
+
+}
+.enterPasswordInput::placeholder{
+  color: rgba(70, 69, 69, 0.7)
+}
+.enterPasswordInput{
+  position: absolute;
+  width: 297px;
+  height: 40px;
+  font-size: 20px;
+  padding-left: 10px;
+  background: rgba(246, 246, 246, 0.4);
+  border: 0.25px solid #000000;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+.vxodButton{
+  position: absolute;
+  width: 297px;
+  height: 40px;
+  margin-top: 70px;
+
+  background: rgba(186, 107, 169, 0.6);
+  border-radius: 10px;
+  font-family: 'Content';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 52px;
+  /* identical to box height */
+  display: flex;
+  text-align: center;
+  align-items: center;
+
+  margin-left: auto;
+  margin-right: auto;
+  color: #FFFFFF;
+  align-content: stretch;
+  justify-content: space-around;
+}
+.vxodButton:active {
+  background: rgba(186, 107, 169, 0.6);
+}
+.vxodButton:hover{
+  background: rgba(173,87,131, 0.6);
+}
+.orTitle{
+  position: absolute;
+  width: 297px;
+  height: 44px;
+  margin-top: 110px;
+  font-family: 'Content';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #464545;
+}
+.googleButton{
+  width: 297px;
+  height: 40px;
+  position: absolute;
+  margin-top: 170px;
+  background: #FFFFFF;
+  /* White Button shadow */
+  display: flex;
+  /* White Button shadow */
+
+  box-shadow: 15px 0px 30px rgba(211, 212, 226, 0.25);
+  border-radius: 12px;
+}
+.googleText{
+  font-family: 'Airbnb Cereal App';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 25px;
+  /* or 114% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  /* Color/ Typography/ Title */
+
+  color: #120D26;
+}
+.ForgotPassword{
+  font-family: 'Content';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 37px;
+  /* identical to box height */
+  margin-top: 230px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #464545;
+  margin-left: -60px;
+  justify-content: space-around;
 }
