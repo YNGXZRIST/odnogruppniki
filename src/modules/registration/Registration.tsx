@@ -1,59 +1,59 @@
 import girls from "../../images/девчули1.svg";
 import {Link} from "react-router-dom";
 import google from "../../images/google.svg";
-import React from "react";
-import { createStore } from 'redux';
+import React, {useCallback} from "react";
+import {shallowEqual, useDispatch, useSelector} from "react-redux";
+
+// import { createStore } from 'redux'
 
 interface IProps {
     // userData: respX[]
 
 }
-const Store=createStore();
+type IAppState = any;
+let selector = (state: IAppState) => {
+    return {
+        user: {
+            id: state.id,
+            login: state.login
+        }
+    }
+}
+export const Registration: React.FC<IProps> = () => {
+    const {user} = useSelector(selector, shallowEqual);
+    const dispatch = useDispatch();
 
-const Registration:React.FC<IProps> = () => {
-    const submit =async (event: React.FormEvent<HTMLFormElement>) => {
+    const insertUserSelector = useCallback(() => dispatch({type: 'user/insert'}), [])
+    const submit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        const formData = document.getElementById('RegistrationForm' )as HTMLFormElement;
-        let newFormData=new FormData(formData);
-        let email=newFormData.get('email');
-        let password=newFormData.get('password');
-        let login=newFormData.get('login');
-        if (typeof(email)==="string" &&typeof(password)==="string" && typeof(login)==="string" ){
-            let response = await fetch('https://run.mocky.io/v3/d95c3641-6810-4733-bf1c-ed371212fb81', {
+        const formData = document.getElementById('RegistrationForm') as HTMLFormElement;
+        let newFormData = new FormData(formData);
+        let email = newFormData.get('email');
+        let password = newFormData.get('password');
+        let login = newFormData.get('login');
+        if (typeof (email) === "string" && typeof (password) === "string" && typeof (login) === "string") {
+            let response = await fetch('https://run.mocky.io/v3/ef6ae84b-e077-4af2-a676-b43e70131ac0', {
                 method: 'POST',
-                body: JSON.stringify({email,password,login})
+                body: JSON.stringify({email, password, login})
             });
 
-            if (response.ok) { // если HTTP-статус в диапазоне 200-299
-                               // получаем тело ответа (см. про этот метод ниже)
+            if (response.ok) {
                 let result = await response.json();
-            console.log(response.status)
+
+                let id = result['id'];
+                let logins = result['login'];
+
+                return result;
+
             } else {
                 alert("Ошибка HTTP: " + response.status);
             }
         }
-
-
-
-        // if (isLoading) return
-        // setIsLoading(true)
-        // if (!(firstNameError || loginError || lastNameError || nicknameError || passwordError)) {
-        //     RegistrationAPI.SingUP(lastName, firstName, login, password, nickname, gender)
-        //         .then(response => {
-        //             if (response.status == 200) {
-        //                 setIsDone(true)
-        //             } else {
-        //                 setNicknameError(ErrorType.NICKNAME)
-        //                 setNicknameErrorText([RegistrationAPI.getErrorText(ErrorType.NICKNAME, "")])
-        //                 return response.json()
-        //             }
-        //         })
-        // } else {
-        //     alert("Ошибка")
-        // }
-        // setIsLoading(false)
     }
+
+
     return (
+
         <div>
 
             <div className="body">
@@ -109,4 +109,3 @@ const Registration:React.FC<IProps> = () => {
         </div>
     )
 }
-export {Registration}
