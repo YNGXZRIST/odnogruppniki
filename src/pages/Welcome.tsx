@@ -30,12 +30,12 @@ const Welcome = () => {
         "RegistrationForm"
     ) as HTMLFormElement;
     let newFormData = new FormData(formData);
-    let email = newFormData.get("email");
+
     let password = newFormData.get("password");
     let login = newFormData.get("login");
 
     if (
-        typeof email === "string" &&
+
         typeof password === "string" &&
         typeof login === "string"
     ) {
@@ -43,7 +43,7 @@ const Welcome = () => {
           REGISTRATIONLINKS.REGISTRATION,
           {
             method: "POST",
-            body: JSON.stringify({ email, password, login }),
+            body: JSON.stringify({ password, login }),
           }
       );
 
@@ -112,8 +112,8 @@ const Welcome = () => {
               <label htmlFor="userName">
                 <input
                   className="enterPasswordInput"
-                  type="text"
-                  name="@nickname"
+                  type="login"
+                  name="login"
                   id="userName"
                   placeholder="@nickname"
                 />

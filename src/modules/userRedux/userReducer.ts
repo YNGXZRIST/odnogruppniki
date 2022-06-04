@@ -21,7 +21,7 @@ export const userReducer = (
   switch (action.type) {
 
     case userActionTypes.USER_REGISTRATION: {
-      debugger
+
       return {
         ...state,
         user: {
