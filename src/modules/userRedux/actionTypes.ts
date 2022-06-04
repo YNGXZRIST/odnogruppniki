@@ -1,0 +1,4 @@
+export const userActionTypes = {
+  USER_REGISTRATION: "USER_REGISTRATION",
+  USER_INFORMATION:"USER_INFORMATION",
+};

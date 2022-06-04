@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+.footer-style {
+    height: 7vh;
+    background: #FCC138;
+    position: relative;
+    display: flex;
+}
+
+.footerLogo {
+    margin-left: 7%;
+    font-size: 25px;
+    color: #FFFFFF;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    font-family: 'Comfortaa', serif;
+}
+
+.find {
+
+    width: 430px;
+    height:80%;
+    background: #FFFFFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+.footerLoop {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 5%;
+    bottom: 0.05%;
+    top: 50%;
+    transform: translate(0, -50%)
+}
+.inputFooter{
+    font-family: 'Raleway', sans-serif;
+    left: 15%;
+    height: 75%;
+    font-size: 20px;
+    width: 80%;
+    top: 50%;
+    transform: translate(0, -50%);
+    position: absolute;
+    color: rgba(0, 0, 0, 0.6);
+}
+.footerButton{
+    color: black;
+}
+.homeButton{
+    top: 50%;
+    margin-left: 3%;
+
+}
+.homeFooterImage{
+
+    width: 25px;
+    height: 25px;
+}
+.messageButton{
+    margin-left: 73%;
+    top: 50%;
+    /*margin-right: 4%;*/
+}
+.messageFooterImage{
+    width: 25px;
+    height: 25px;
+}
+.profileButton{
+    margin-right: 7%;
+    top: 50%;
+    margin-left: 3%;
+}
+.likeButton{
+    margin-left: 3%;
+}
+.likeFooterImage{
+    width: 25px;
+    height: 25px;
+}
+.profileFooterImage{
+    width: 25px;
+    height: 25px;
+}

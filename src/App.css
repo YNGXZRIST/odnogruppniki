@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Open+Sans:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Content&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&family=Open+Sans:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Content&display=swap");
 .body {
-  background: #E5E5E5;
+  background: #e5e5e5;
   width: 100vw;
   height: 100vh;
 }
@@ -13,14 +13,21 @@
   left: -9px;
   margin-left: 26px;
 }
-
+.woman-reg{
+  width: 600px;
+  height: 600px;
+  left: -9px;
+  top: 35px;
+  margin-left: 56px;
+  position: absolute;
+}
 .register {
   position: absolute;
   width: 426px;
   height: 624px;
 
-  background: #FFFFFF;
-  border: 1px solid #EDE5E5;
+  background: #ffffff;
+  border: 1px solid #ede5e5;
   box-sizing: border-box;
   border-radius: 10px;
   margin: 37px 23px 124px 829px;
@@ -31,7 +38,7 @@
   height: 50px;
   display: flex;
   position: absolute;
-  font-family: 'Comfortaa';
+  font-family: "Comfortaa";
   font-style: normal;
   font-weight: 400;
   font-size: 40px;
@@ -43,12 +50,12 @@
   margin-top: 73px;
   justify-content: space-evenly;
 }
-.entrance{
+.entrance {
   width: 100px;
   height: 52px;
   /*margin-top: 142px;*/
   /*margin-left: 68px;*/
-  font-family: 'Content';
+  font-family: "Content";
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
@@ -61,8 +68,7 @@
 
   color: #000000;
 }
-.buttonEnter{
-
+.buttonEnter {
   width: 100px;
   height: 52px;
   display: flex;
@@ -71,37 +77,32 @@
   margin-left: 68px;
   flex-direction: column-reverse;
 }
-.borderEnter{
+.borderEnter {
   border: 1px solid #000000;
   transform: rotate(-0.17deg);
   position: absolute;
   width: 100px;
   height: 0px;
   /*margin-left: 53px;*/
-
 }
-.buttonRegister_registerPage{
-
+.buttonRegister_registerPage {
 }
-.buttonRegister{
-
-
+.buttonRegister {
   height: 52px;
   display: flex;
-
 
   margin-top: 142px;
 
   flex-direction: column-reverse;
   width: 100%;
 }
-.buttonMenu{
+.buttonMenu {
   display: flex;
   margin-right: 59px;
 }
-.registrationTitle{
+.registrationTitle {
   margin-left: 0;
-  font-family: 'Content';
+  font-family: "Content";
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
@@ -112,36 +113,34 @@
   align-items: center;
   text-align: center;
 
-  color: #A59C9C;
-
+  color: #a59c9c;
 }
-.borderRegisterRegistrationPage{
+.borderRegisterRegistrationPage {
   border: 1px solid #000000;
   transform: rotate(-0.17deg);
   position: absolute;
   width: 197px;
 }
-.borderEnterRegistrationPage{
-  border: 1px solid #A59C9C;
+.borderEnterRegistrationPage {
+  border: 1px solid #a59c9c;
   transform: rotate(-0.17deg);
   position: absolute;
   width: 100px;
   height: 0px;
 }
-.borderRegister{
-  border: 1px solid #A59C9C;
+.borderRegister {
+  border: 1px solid #a59c9c;
   transform: rotate(-0.17deg);
   position: absolute;
   width: 197px;
 
   /*margin-left: 53px;*/
-
 }
-.helper{
+.helper {
   margin-top: 30px;
   margin-left: 68px;
 }
-.enterNameInput{
+.enterNameInput {
   position: absolute;
   width: 297px;
   height: 40px;
@@ -152,8 +151,8 @@
   box-sizing: border-box;
   border-radius: 10px;
 }
-.nameTitle{
-  font-family: 'Content';
+.nameTitle {
+  font-family: "Content";
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
@@ -164,11 +163,11 @@
 
   color: #464545;
 }
-.userPasswordBox{
+.userPasswordBox {
   margin-top: 50px;
 }
-.passwordTitle{
-  font-family: 'Content';
+.passwordTitle {
+  font-family: "Content";
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
@@ -178,12 +177,11 @@
   text-align: center;
 
   color: #464545;
-
 }
-.enterPasswordInput::placeholder{
-  color: rgba(70, 69, 69, 0.7)
+.enterPasswordInput::placeholder {
+  color: rgba(70, 69, 69, 0.7);
 }
-.enterPasswordInput{
+.enterPasswordInput {
   position: absolute;
   width: 297px;
   height: 40px;
@@ -194,7 +192,7 @@
   box-sizing: border-box;
   border-radius: 10px;
 }
-.vxodButton{
+.vxodButton {
   position: absolute;
   width: 297px;
   height: 40px;
@@ -202,7 +200,7 @@
 
   background: rgba(186, 107, 169, 0.6);
   border-radius: 10px;
-  font-family: 'Content';
+  font-family: "Content";
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
@@ -214,22 +212,22 @@
 
   margin-left: auto;
   margin-right: auto;
-  color: #FFFFFF;
+  color: #ffffff;
   align-content: stretch;
   justify-content: space-around;
 }
 .vxodButton:active {
   background: rgba(186, 107, 169, 0.6);
 }
-.vxodButton:hover{
-  background: rgba(173,87,131, 0.6);
+.vxodButton:hover {
+  background: rgba(173, 87, 131, 0.6);
 }
-.orTitle{
+.orTitle {
   position: absolute;
   width: 297px;
   height: 44px;
   margin-top: 110px;
-  font-family: 'Content';
+  font-family: "Content";
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -239,12 +237,12 @@
   justify-content: space-evenly;
   color: #464545;
 }
-.googleButton{
+.googleButton {
   width: 297px;
   height: 40px;
   position: absolute;
   margin-top: 170px;
-  background: #FFFFFF;
+  background: #ffffff;
   /* White Button shadow */
   display: flex;
   /* White Button shadow */
@@ -252,8 +250,8 @@
   box-shadow: 15px 0px 30px rgba(211, 212, 226, 0.25);
   border-radius: 12px;
 }
-.googleText{
-  font-family: 'Airbnb Cereal App';
+.googleText {
+  font-family: "Airbnb Cereal App";
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
@@ -266,10 +264,10 @@
 
   /* Color/ Typography/ Title */
 
-  color: #120D26;
+  color: #120d26;
 }
-.ForgotPassword{
-  font-family: 'Content';
+.ForgotPassword {
+  font-family: "Content";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;

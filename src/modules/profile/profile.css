@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200&display=swap');
+
+.body {
+    background: #E5E5E5;
+    width: 100vw;
+    height: 150vh;
+
+}
+::-webkit-scrollbar {
+    width: 0;
+}
+.profileContent {
+    background: #FFFFFF;
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-top: 1%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1),
+    -23px 0 20px -23px rgba(0, 0, 0, .2),
+    23px 0 20px -23px rgba(0, 0, 0, .2),
+    0 0 40px rgba(0, 0, 0, .1) inset;
+    width: 90%;
+    height: 139%;
+    margin-bottom: 1%;
+    position: absolute;
+}
+
+.profileInfo {
+    display: flex;
+    border-radius: 10px;
+    width: 100%;
+    height: 35%;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    margin-left: 5%;
+    margin-top: 2%;
+    border-radius: 100px;
+
+}
+
+.profileHelper {
+display: flex;
+    width: 80%;
+    height: 100%;
+}
+
+.nickname {
+    display: flex;
+    font-family: 'Quicksand', sans-serif;
+margin-top: 8%;
+}
+
+.editProfile {
+    position: absolute;
+    margin-left: 50%;
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+    top: 7%;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: 'Mulish', sans-serif;
+
+    color: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    background: #FFFFFF;
+    border: 1px solid #EDE5E5;
+    border-radius: 10px;
+    width: 65%;
+    height: 10%;
+    line-height: 25px;
+    text-align: center;
+}
+
+.nicknameHelper {
+    position: absolute;
+    top: 3%;
+    font-style: normal;
+    font-size: 25px;
+    line-height: 59px;
+    margin-left: 8%;
+    width: 20%;
+    height: 50%;
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: flex-start;
+
+}
+
+.border {
+    border: 1px solid #E5E5E5;
+    width: 100%;
+
+}
+.countOfPublications{
+    margin-top: 12%;
+    margin-left: 10%;
+
+}
+.countOfSubscribers{
+    margin-top: 12%;
+    margin-left: 3%;
+
+}
+.countOfSubscriber{
+    margin-top: 12%;
+    margin-left: 3%;
+}
+.descriptionProfile{
+    margin-top: 13%;
+    margin-left: -72%;
+    width: 35%;
+    height: 40%;
+
+}
+.notSubscribe{
+    margin-top: 9%;
+    margin-left: 5%;
+    width: 65%;
+    height: 65%;
+}
+.subscribeButton{
+    position: absolute;
+    margin-left: 90%;
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+    top: 7%;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: 'Mulish', sans-serif;
+
+    background: #FFFFFF;
+    border: 1px solid #EDE5E5;
+    border-radius: 10px;
+
+    display: inline-block;
+
+    width: 20%;
+    height: 10%;
+    line-height: 25px;
+    text-align: center;
+}
+.sendMessageProfile{
+    position: absolute;
+    margin-left: 17%;
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+    top: 7%;
+    font-weight: 600;
+    font-size: 13px;
+    font-family: 'Mulish', sans-serif;
+
+    color: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    background: #FFFFFF;
+    border: 1px solid #EDE5E5;
+    border-radius: 10px;
+    width: 65%;
+    height: 10%;
+    line-height: 25px;
+    text-align: center;
+}
+.postSource{
+    width: 300px;
+    height: 300px;
+
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border: 1px solid #EDE5E5;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0,0.05);
+    display:block
+}
+
+.postValue{
+
+    width: 100%;
+    height: 63%;
+    display: flex;
+    justify-content: center;
+    overflow: scroll;
+    flex-wrap: wrap;
+
+    position: absolute;
+
+    scroll-snap-type: x mandatory;
+
+
+}
