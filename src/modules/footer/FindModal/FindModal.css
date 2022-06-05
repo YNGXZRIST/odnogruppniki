@@ -1,0 +1,82 @@
+.modal-findPage{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(196, 196, 196, 0.5);
+    animation-name: appear;
+    animation-duration: 300ms;
+}
+.triangle{
+    border: 100px solid transparent; border-bottom: 100px solid white;
+    margin-top: -43%;
+    margin-left: 50%;
+}
+.modal-find{
+    top: -10%;
+    left: -32%;
+    min-width: 50%;
+    width: 50%;
+    min-height: 50%;
+    max-width: 50%;
+    background: white;
+    position: relative;
+    /*margin: 0 20px;*/
+    max-height: calc(100vh - 40px);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    /*overflow: hidden;*/
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slide-in;
+    animation-duration: 0.5s;
+    border-radius: 12px;
+}
+.notFoundImage{
+    height: 40%;
+    width: 40%;
+    margin-left: 30%;
+}
+.notFoundText{
+margin-left: -22%;
+
+    width: 150%;
+    height: 30%;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'SF UI Text', italic, sans-serif;
+}
+.modal-nickname{
+    margin-top: -9%;
+    margin-left: 20%;
+    font-size: 30px;
+    font-family: 'SF UI Text', italic,  serif;
+}
+.modal-find-avatar{
+    margin-left: 5%;
+    height: 84px;
+    width: 84px;
+    border-radius: 50%;
+    border: 1px solid #E5E5E5;
+}
+.profile-modal-find{
+    padding: 1rem;
+    margin-left: 1rem;
+    border-radius: 12px;
+    background: rgba(246, 246, 246, 0.42);
+    width: 95%;
+    height: 110px;
+
+}
+.profile-modal-find:hover{
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0,0.04);
+    cursor: pointer;
+}

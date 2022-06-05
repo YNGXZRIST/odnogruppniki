@@ -29,15 +29,17 @@
     display: flex;
     border-radius: 10px;
     width: 100%;
-    height: 35%;
+    height: 26%;
+
 }
 
 .avatar {
     width: 150px;
     height: 150px;
-    margin-left: 5%;
-    margin-top: 2%;
     border-radius: 100px;
+    margin-left: 5%;
+    margin-top: 5%;
+
 
 }
 
@@ -50,7 +52,7 @@ display: flex;
 .nickname {
     display: flex;
     font-family: 'Quicksand', sans-serif;
-margin-top: 8%;
+margin-top: 12%;
 }
 
 .editProfile {
@@ -101,6 +103,7 @@ margin-top: 8%;
     margin-top: 12%;
     margin-left: 10%;
 
+
 }
 .countOfSubscribers{
     margin-top: 12%;
@@ -119,18 +122,18 @@ margin-top: 8%;
 
 }
 .notSubscribe{
-    margin-top: 9%;
+    margin-top: 20%;
     margin-left: 5%;
-    width: 65%;
-    height: 65%;
+    width: 55%;
+    height: 55%;
 }
 .subscribeButton{
     position: absolute;
-    margin-left: 90%;
+    margin-left: 10%;
     white-space: nowrap;
 
     text-overflow: ellipsis;
-    top: 7%;
+    top: 9%;
     font-weight: 600;
     font-size: 12px;
     font-family: 'Mulish', sans-serif;
@@ -141,8 +144,8 @@ margin-top: 8%;
 
     display: inline-block;
 
-    width: 20%;
-    height: 10%;
+    width: 14%;
+    height: 7%;
     line-height: 25px;
     text-align: center;
 }
@@ -179,11 +182,17 @@ margin-top: 8%;
     box-shadow: 0 0 2px 2px rgba(0, 0, 0,0.05);
     display:block
 }
-
+.postSource:hover {
+    width: 305px;
+    height: 305px;
+    cursor: pointer;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0,0.1);
+}
 .postValue{
-
+    animation-name: appear;
+    animation-duration: 300ms;
     width: 100%;
-    height: 63%;
+    height: 75.5%;
     display: flex;
     justify-content: center;
     overflow: scroll;
@@ -194,4 +203,18 @@ margin-top: 8%;
     scroll-snap-type: x mandatory;
 
 
+}
+.postEmpty{
+    color: #a0a0a0;
+    font-size: 200px;
+   margin-top: 10%;
+    font-family: 'Comfortaa', serif;
+    text-align: center
+}
+.postLoad{
+    color: #a0a0a0;
+    font-size: 200px;
+    margin-top: 10%;
+
+    text-align: center
 }

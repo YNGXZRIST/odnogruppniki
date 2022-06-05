@@ -61,11 +61,11 @@ export const Registration: React.FC<IProps> = () => {
         });
        let redirectTo = (path: string): void => {
           // history.push(path);
-         navigate(path);
-          // window.location.reload();
+          navigate(path);
+         //   window.location.reload();
         };
 
-       // redirectTo(`/page/${requestLogin}`);
+       redirectTo(`/page/${requestLogin}`);
 
       } else {
         alert("Ошибка HTTP: " + response.status);
