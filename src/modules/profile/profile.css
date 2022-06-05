@@ -54,12 +54,15 @@ display: flex;
     font-family: 'Quicksand', sans-serif;
 margin-top: 12%;
 }
-
+.editProfile:hover{
+    cursor: pointer;
+    box-shadow: 0 0 3px 3px rgba(0, 0, 0,0.02);
+}
 .editProfile {
     position: absolute;
     margin-left: 50%;
     white-space: nowrap;
-
+margin-top: 3%;
     text-overflow: ellipsis;
     top: 7%;
     font-weight: 600;
@@ -72,7 +75,7 @@ margin-top: 12%;
     border: 1px solid #EDE5E5;
     border-radius: 10px;
     width: 65%;
-    height: 10%;
+    height: 7%;
     line-height: 25px;
     text-align: center;
 }

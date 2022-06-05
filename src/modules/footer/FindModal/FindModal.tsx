@@ -9,17 +9,18 @@ import NotFound from '../../../images/Мальчишка.svg';
 interface ModalFindProps {
     visible: boolean
     title: string
-
+    isNavigate: boolean
     footer: ReactElement | string
     onClose: () => void
+    OnNavigate:()=>void
 }
 
 export const FindModal = ({
                           visible = false,
                           title = '',
-
+                              isNavigate=false,
                           footer = '',
-
+                              OnNavigate,
                           onClose,
                       }: ModalFindProps) => {
     // создаем обработчик нажатия клавиши Esc
@@ -52,7 +53,7 @@ export const FindModal = ({
           </span>
                 </div>
                 {title!=='error:404'?
-                    <button className='profile-modal-find' onClick={event =>  window.location.href='/page/'+title}>
+                    <button className='profile-modal-find' onClick={OnNavigate}>
                         <div className='modal-find-avatar'><Svg src={renderAvatar(title)} className='modal-avatar-helper'  /></div>
                         <div className='modal-nickname'>{title}</div>
                     </button>

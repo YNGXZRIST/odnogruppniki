@@ -16,17 +16,35 @@ import {useNavigate} from "react-router-dom";
 
 
 export const Footer = () => {
+    const navigate = useNavigate();
 
+    const [isNavigate, setIsNavigate] = React.useState(false)
     const [requestUser, setRequestUser] = useState<string>("");
     const [isFindLoading, setIsFindLoading] = useState(false)
     const [isFindModal, setFindModal] = React.useState(false)
     const onFindClose = () => setFindModal(false)
+    const OnNavigateRedirect=()=> {
+        setIsNavigate(true)
+        onFindClose();
+    }
+
+
     const initFindUser = async (username: string) => {
         setFindModal(true)
         let user: string = await findUser(username);
         setRequestUser(user);
         return user;
     }
+    let redirectTo = (path: string): void => {
+        // history.push(path);
+        navigate(path);
+        //   window.location.reload();
+    };
+    if (isNavigate){
+        redirectTo('/page/'+requestUser);
+        setIsNavigate(false);
+    }
+    console.log(isNavigate)
     const findSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = document.getElementById(
@@ -67,9 +85,10 @@ export const Footer = () => {
             </button>
             <FindModal
                 visible={isFindModal}
-
+                isNavigate={isNavigate}
                 footer={<button onClick={onFindClose}>Закрыть</button>}
                 onClose={onFindClose}
+                OnNavigate={OnNavigateRedirect}
                 title={requestUser}/>
         </div>);
 }
