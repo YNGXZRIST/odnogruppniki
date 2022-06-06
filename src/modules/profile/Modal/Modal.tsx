@@ -8,7 +8,7 @@ import '../../../fonts/stylesheet.css'
 interface ModalProps {
     visible: boolean
     title: string
-    login: string
+    username: string
     content: ReactElement | string
     footer: ReactElement | string
     onClose: () => void
@@ -19,7 +19,7 @@ export const Modal = ({
                           title = '',
                           content = '',
                           footer = '',
-                          login = '',
+                          username = '',
                           onClose,
                       }: ModalProps) => {
     // создаем обработчик нажатия клавиши Esc
@@ -54,9 +54,9 @@ export const Modal = ({
                 <div  className='modal-image-body'>
 
                     {content}</div>
-                <div className='modal-avatar'><Svg src={renderAvatar(login)} className='modal-avatar-helper'  /></div>
+                <div className='modal-avatar'><Svg src={renderAvatar(username)} className='modal-avatar-helper'  /></div>
 
-                    <div className='modal-login' > {login}</div>
+                    <div className='modal-login' > {username}</div>
                 <div className='modal-title'> {title}</div>
 
             </div>

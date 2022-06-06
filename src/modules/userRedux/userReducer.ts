@@ -2,7 +2,8 @@ import { userActionTypes } from "./actionTypes";
 
 interface IUserModel {
   id: number;
-  login: string;
+  username: string;
+  token:string;
 }
 
 interface IReduxStore {
@@ -11,7 +12,7 @@ interface IReduxStore {
 
 const getInitialState = () => {
   return {
-    user: { id: 1, login: "durov" },
+    user: { id: 1, username: "durov" ,token:""},
   };
 };
 export const userReducer = (
@@ -26,7 +27,20 @@ export const userReducer = (
         ...state,
         user: {
           id: action.payload.id,
-          login: action.payload.login,
+          username: action.payload.username,
+          token:''
+        },
+      };
+
+    }
+    case userActionTypes.USER_AUTH: {
+
+      return {
+        ...state,
+        user: {
+          id: action.payload.id,
+          username: action.payload.username,
+          token:action.payload.token
         },
       };
 

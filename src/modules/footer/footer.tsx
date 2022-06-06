@@ -44,7 +44,7 @@ export const Footer = () => {
         redirectTo('/page/'+requestUser);
         setIsNavigate(false);
     }
-    console.log(isNavigate)
+
     const findSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = document.getElementById(
@@ -79,7 +79,7 @@ export const Footer = () => {
                        // onChange={(event => initFindUser(event.target.value))}
                 /></form>
 
-            <button className='messageButton'><img src={home} alt='home' className='homeFooterImage'/></button>
+            <button className='messageButton'><img src={home} alt='home' className='homeFooterImage' onClick={event =>redirectTo('/feed')}/></button>
             {/*<button className='likeButton'><img src={hearth} alt='like' className='likeFooterImage'/></button>*/}
             <button className='profileButton'><img src={userFooter} alt='profile' className='profileFooterImage'/>
             </button>

@@ -1,13 +1,13 @@
 import {PROFILEAPILINKS} from "./ProfileApiLinks";
 
 
-export const findUser= async (login:string) => {
+export const findUser= async (username:string) => {
 
     let response = await fetch(
         PROFILEAPILINKS.FIND,
         {
             method: "POST",
-            body: JSON.stringify({login}),
+            body: JSON.stringify({username}),
         }
     );
     if (response.ok) {

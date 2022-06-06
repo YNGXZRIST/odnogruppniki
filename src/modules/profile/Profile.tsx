@@ -4,7 +4,7 @@ import React, {ReactChild, useCallback, useEffect, useRef, useState} from "react
 import {Footer} from "../footer/footer";
 
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {PROFILEAPILINKS} from "./ProfileApiLinks";
 import {userActionTypes} from "../userRedux/actionTypes";
 import NotSubscribe from '../../images/notSubscribe.svg'
@@ -13,6 +13,7 @@ import { createAvatar } from '@dicebear/avatars';
 import * as style from '@dicebear/avatars-male-sprites';
 import {Modal} from "./Modal/Modal";
 import {renderAvatar} from "./renderAvatar";
+import {UploadModal} from "./UploadPosts/UploadModal";
 
 interface IProps {
 
@@ -27,7 +28,8 @@ let selector = (state: IAppState) => {
     return {
         user: {
             id: state.user.id,
-            login: state.user.login,
+            username: state.user.username,
+            token: state.user.token
         },
     };
 };
@@ -41,13 +43,13 @@ function Profile(){
 
 
     ]
-    const {login}=useParams();
-
+    const {username}=useParams();
+const navigate =useNavigate();
     const countRef = useRef();
     const {user} = useSelector(selector, shallowEqual);
     const [currentImage, setCurrentImage] = useState<string | undefined>("");
     const [currentTitle, setCurrentTitle] = useState<string | undefined>("");
-    const [requestLogin, setRequestLogin] = useState<string>("");
+    const [requestUsername, setRequestUsername] = useState<string>("");
     const [requestCountOfPosts, setRequestCountOfPosts] = useState<string>("");
     const [requestCountOfSubscribers, setRequestCountOfSubscribers] = useState<string>("");
     const [requestCountOfSubscribe, setRequestCountOfSubscribe] = useState<string>("");
@@ -55,35 +57,52 @@ function Profile(){
     const [avatar, setAvatar] = useState<string>("");
 
     const [requestPosts,setRequestPosts]=useState<IPosts[]>(getInitialPosts());
-
+    const [isUploadModal, setUploadModal] = React.useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [isModal, setModal] = React.useState(false)
     const onClose = () => setModal(false)
+    const onCloseUpload = () => setUploadModal(false)
+    const onUpload=()=>{
+
+        setUploadModal(false)
+    }
+
     const fetchUser = async () => {
         let response = await fetch(
             PROFILEAPILINKS.PROFILE,
             {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization':'Bearer '+ user.token
+                },
                 method: "POST",
-                body: JSON.stringify({login}),
+                body: JSON.stringify({username}),
             }
         );
         if (response.ok) {
             let result = await response.json();
 
-            setRequestLogin(result['login']);
-            setRequestCountOfPosts(result['countOfPosts']);
-            setRequestDescription(result['description']);
-            setRequestCountOfSubscribers(result['countOfSubscribers']);
-            setRequestCountOfSubscribe(result['countOfSubscribe']);
+            setRequestUsername(result['username']);
+            // setRequestCountOfPosts(result['countOfPosts'].length);
+            // setRequestDescription(result['description']);
+            setRequestCountOfSubscribers(result['subscribers'].length);
+            setRequestCountOfSubscribe(result['subscriptions'].length);
             // setRequestAvatar(result['avatar']);
             setRequestPosts(result['posts']);
 setIsLoading(true);
         } else {
-            alert("Ошибка HTTP: " + response.status);
+
+            let redirectTo = (path: string): void => {
+                // history.push(path);
+                navigate(path);
+                //   window.location.reload();
+            };
+
+            redirectTo(`/`);
         }
 
     }
-
+    console.log(requestUsername,requestCountOfSubscribe,requestCountOfSubscribers)
     const handleClickCheckbox = (source: string | undefined) => {
         requestPosts?.map(
 
@@ -132,15 +151,26 @@ setIsLoading(true);
                 <div className='profileInfo'>
 
 
-                    {isLoading?   <Svg src={renderAvatar(requestLogin)} className="avatar"  />: null }
+                    {isLoading?   <Svg src={renderAvatar(requestUsername)} className="avatar"  />: null }
                     <div className='profileHelper'>
                         <div className='nicknameHelper'>
-                            <div className='nickname'>{requestLogin}</div>
-                            {login===user.login &&isLoading ?
+                            <div className='nickname'>{requestUsername}</div>
+                            {username===user.username &&isLoading ?
+<div>
+                                <button className='editProfile'  onClick={() => setUploadModal(true)}>
+                            Добавить пост
+                                        </button>
+    <UploadModal
+        visible={isUploadModal}
+        title={(String)(currentTitle)}
+        content={<img src={currentImage}/>}
+        token={user.token}
+        footer={<button onClick={onCloseUpload}>Закрыть</button>}
+        onClose={onCloseUpload}
+        onUpload={onUpload}
 
-                                <button className='editProfile' >
-                                <Link to={`/page/edit/`}> Добавить пост</Link>
-                                        </button>:
+    />
+</div>:
                                 <div style={{display:"flex"}}>
 
                                     <div className='subscribeButton'>
@@ -169,7 +199,7 @@ setIsLoading(true);
                             visible={isModal}
                             title={(String)(currentTitle)}
                             content={<img src={currentImage}/>}
-                            login={requestLogin}
+                            username={requestUsername}
                             footer={<button onClick={onClose}>Закрыть</button>}
                             onClose={onClose}
 

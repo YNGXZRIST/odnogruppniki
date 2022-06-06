@@ -18,7 +18,7 @@ let selector = (state: IAppState) => {
   return {
     user: {
       id: state.id,
-      login: state.login,
+      username: state.username,
     },
   };
 };
@@ -34,18 +34,22 @@ export const Registration: React.FC<IProps> = () => {
     let newFormData = new FormData(formData);
 
     let password = newFormData.get("password");
-    let login = newFormData.get("login");
+    let username = newFormData.get("username");
+    let email = newFormData.get("email");
 
     if (
 
       typeof password === "string" &&
-      typeof login === "string"
+      typeof username === "string"
     ) {
       let response = await fetch(
         REGISTRATIONLINKS.REGISTRATION,
         {
+          headers: {
+            'Content-Type': 'application/json'
+          },
           method: "POST",
-          body: JSON.stringify({ password, login }),
+          body: JSON.stringify({email, password, username ,role:['user']}),
         }
       );
 
@@ -53,11 +57,11 @@ export const Registration: React.FC<IProps> = () => {
         let result = await response.json();
 
         let id = result["id"];
-        let requestLogin = result["login"];
+        let requestUsername = result["username"];
 
         dispatch({
           type: userActionTypes.USER_REGISTRATION,
-          payload: { id, login: requestLogin },
+          payload: { id, username: requestUsername },
         });
        let redirectTo = (path: string): void => {
           // history.push(path);
@@ -65,7 +69,7 @@ export const Registration: React.FC<IProps> = () => {
          //   window.location.reload();
         };
 
-       redirectTo(`/page/${requestLogin}`);
+       // redirectTo(`/`);
 
       } else {
         alert("Ошибка HTTP: " + response.status);
@@ -125,7 +129,7 @@ export const Registration: React.FC<IProps> = () => {
                 <input
                   className="enterPasswordInput"
                   type="enterNameInput"
-                  name="login"
+                  name="username"
                   id="userName"
                   placeholder="@nickname"
                 />

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import google from "../images/google.svg";
 import girls from "../images/девчули1.svg";
 import "../reset.css";
@@ -16,14 +16,15 @@ let selector = (state: IAppState) => {
   return {
     user: {
       id: state.id,
-      login: state.login,
+      username: state.username,
+      token: state.token
     },
   };
 };
 const Welcome = () => {
   const { user } = useSelector(selector, shallowEqual);
   const dispatch = useDispatch();
-
+const navigate=useNavigate()
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = document.getElementById(
@@ -32,18 +33,22 @@ const Welcome = () => {
     let newFormData = new FormData(formData);
 
     let password = newFormData.get("password");
-    let login = newFormData.get("login");
-
+    let username = newFormData.get("username");
+    console.log(password,username)
     if (
 
         typeof password === "string" &&
-        typeof login === "string"
+        typeof username === "string"
     ) {
       let response = await fetch(
-          REGISTRATIONLINKS.REGISTRATION,
+          REGISTRATIONLINKS.AUTH,
           {
+            headers: {
+              'Content-Type': 'application/json'
+            },
             method: "POST",
-            body: JSON.stringify({ password, login }),
+
+            body: JSON.stringify({  username,password }),
           }
       );
 
@@ -51,18 +56,20 @@ const Welcome = () => {
         let result = await response.json();
 
         let id = result["id"];
-        let requestLogin = result["login"];
+        let requestUsername = result["username"];
 
         dispatch({
-          type: userActionTypes.USER_REGISTRATION,
-          payload: { id, login: requestLogin },
+          type: userActionTypes.USER_AUTH,
+          payload: { id, username: requestUsername ,token:result['accessToken']},
         });
+
         let redirectTo = (path: string): void => {
-          history.push(path);
-          window.location.reload();
+
+          navigate(path);
+
         };
 
-        redirectTo(`/page/${requestLogin}`);
+        redirectTo(`/page/`+requestUsername);
 
       } else {
         alert("Ошибка HTTP: " + response.status);
@@ -112,8 +119,8 @@ const Welcome = () => {
               <label htmlFor="userName">
                 <input
                   className="enterPasswordInput"
-                  type="login"
-                  name="login"
+                  type="username"
+                  name="username"
                   id="userName"
                   placeholder="@nickname"
                 />
