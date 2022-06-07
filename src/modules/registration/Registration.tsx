@@ -26,6 +26,7 @@ export const Registration: React.FC<IProps> = () => {
   const { user } = useSelector(selector, shallowEqual);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, setError] = useState<number | undefined>();
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = document.getElementById(
@@ -52,7 +53,6 @@ export const Registration: React.FC<IProps> = () => {
           body: JSON.stringify({email, password, username ,role:['ROLE_ADMIN']}),
         }
       );
-
       if (response.ok) {
         let result = await response.json();
 
@@ -72,7 +72,9 @@ export const Registration: React.FC<IProps> = () => {
      redirectTo(`/`);
 
       } else {
-        // alert("Ошибка HTTP: " + response.status);
+        setError(response.status);
+        alert(response.status)
+
       }
     }
   };
@@ -144,6 +146,7 @@ export const Registration: React.FC<IProps> = () => {
                   placeholder="6+ символов"
                 />
               </div>
+              {error? <div >Неверно введены данные</div>:null}
               <button className="vxodButton">Зарегистрироваться</button>
               {/*<p className="orTitle">Или</p>*/}
               {/*<div className="googleButton">*/}

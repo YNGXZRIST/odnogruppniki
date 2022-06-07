@@ -30,6 +30,7 @@ export interface IPosts {
   path: string | undefined;
   id: number | undefined;
   userId: number | undefined;
+  username:string|undefined;
 
 
 }
@@ -57,6 +58,7 @@ function Profile() {
       path: undefined,
       id: undefined,
       userId: undefined,
+      username:undefined
     },
   ];
   const getInitialSubscribe = (): ISubscribe[] => [
@@ -118,9 +120,11 @@ function Profile() {
       setRequestUserId(result["id"]);
       setRequestSubscribe(result["subscribers"]);
       setRequestSubscription(result["subscriptions"]);
+      setRequestCountOfPosts(result["posts"].length);
+      setRequestPosts(result["posts"]);
       // eslint-disable-next-line array-callback-return
       requestSubscribe.map((subscribe) => {
-        if (subscribe.username === username) {
+        if (subscribe.username === user.username) {
           setIsFollow(true);
 
         }
@@ -138,44 +142,44 @@ function Profile() {
       redirectTo(`/`);
     }
   };
-  const fetchPosts = async () => {
-    if (user.username === username) {
-      let response = await fetch(PROFILEAPILINKS.LOAD_POSTS, {
-        headers: {
-          Authorization: "Bearer " + user.token,
-        },
-        method: "GET",
-      });
-      if (response.ok) {
-        let result = await response.json();
-        setRequestCountOfPosts(result["posts"].length);
-        setRequestPosts(result["posts"]);
-        // console.log(requestPosts);
-        return;
-      }
-    } else {
-      let response = await fetch(
-        PROFILEAPILINKS.LOAD_OTHER_USER_POSTS + requestUserId,
-        {
-          headers: {
-            Authorization: "Bearer " + user.token,
-          },
-          method: "GET",
-        }
-      );
-      if (response.ok) {
-        let result = await response.json();
-        console.log(result);
-        setRequestCountOfPosts(result["posts"].length);
-        setRequestPosts(result["posts"]);
-
-        setIsPostLoading(true);
-        // alert("imhere");
-        return;
-      }
-      // alert("imhere");
-    }
-  };
+  // const fetchPosts = async () => {
+  //   if (user.username === username) {
+  //     let response = await fetch(PROFILEAPILINKS.LOAD_POSTS, {
+  //       headers: {
+  //         Authorization: "Bearer " + user.token,
+  //       },
+  //       method: "GET",
+  //     });
+  //     if (response.ok) {
+  //       let result = await response.json();
+  //       setRequestCountOfPosts(result["posts"].length);
+  //       setRequestPosts(result["posts"]);
+  //       // console.log(requestPosts);
+  //       return;
+  //     }
+  //   } else {
+  //     let response = await fetch(
+  //       PROFILEAPILINKS.LOAD_OTHER_USER_POSTS + requestUserId,
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + user.token,
+  //         },
+  //         method: "GET",
+  //       }
+  //     );
+  //     if (response.ok) {
+  //       let result = await response.json();
+  //       console.log(result);
+  //       setRequestCountOfPosts(result["posts"].length);
+  //       setRequestPosts(result["posts"]);
+  //
+  //       setIsPostLoading(true);
+  //       // alert("imhere");
+  //       return;
+  //     }
+  //     // alert("imhere");
+  //   }
+  // };
   const handleClickCheckbox = (source: string, title: string) => {
     requestPosts?.map((post) => {
       let postUrl = "http://localhost" + post.path;
@@ -238,9 +242,9 @@ function Profile() {
   useEffect(() => {
     fetchUser();
   }, [username]);
-  useEffect(() => {
-    fetchPosts();
-  }, [username]);
+  // useEffect(() => {
+  //   fetchPosts();
+  // }, [username]);
   // useEffect(() => {
   //   follow();
   // }, [username]);
