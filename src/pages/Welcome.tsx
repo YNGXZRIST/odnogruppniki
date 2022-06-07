@@ -72,7 +72,7 @@ const navigate=useNavigate()
         redirectTo(`/page/`+requestUsername);
 
       } else {
-        alert("Ошибка HTTP: " + response.status);
+        // alert("Ошибка HTTP: " + response.status);
       }
     }
   };

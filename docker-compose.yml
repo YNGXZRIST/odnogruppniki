@@ -17,6 +17,9 @@ services:
       - db-network
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - STATIC_IMAGES=file:///static
+    volumes:
+      - myapp:/static
 
   db:
     image: postgres
@@ -29,3 +32,5 @@ services:
     networks:
       - db-network
 
+volumes:
+  myapp:

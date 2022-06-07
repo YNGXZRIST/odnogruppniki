@@ -5,6 +5,7 @@ import Svg from "react-inlinesvg";
 import {renderAvatar} from "../../profile/renderAvatar";
 // import '../../../../fonts/stylesheet.css'
 import NotFound from '../../../images/Мальчишка.svg';
+
 // интерфейс для пропсов
 interface ModalFindProps {
     visible: boolean
@@ -12,17 +13,17 @@ interface ModalFindProps {
     isNavigate: boolean
     footer: ReactElement | string
     onClose: () => void
-    OnNavigate:()=>void
+    OnNavigate: () => void
 }
 
 export const FindModal = ({
-                          visible = false,
-                          title = '',
-                              isNavigate=false,
-                          footer = '',
+                              visible = false,
+                              title = '',
+                              isNavigate = false,
+                              footer = '',
                               OnNavigate,
-                          onClose,
-                      }: ModalFindProps) => {
+                              onClose,
+                          }: ModalFindProps) => {
     // создаем обработчик нажатия клавиши Esc
     const onKeydown = ({key}: KeyboardEvent) => {
         switch (key) {
@@ -44,7 +45,7 @@ export const FindModal = ({
     // или возвращаем верстку модального окна
     return (
         <div className='modal-findPage' onClick={onClose}>
-            <div className='triangle'> </div>
+            <div className='triangle'></div>
             <div className='modal-find' onClick={e => e.stopPropagation()}>
                 <div className='modal-header'>
 
@@ -52,21 +53,20 @@ export const FindModal = ({
             &times;
           </span>
                 </div>
-                {title!=='error:404'?
+                {title !== 'error:404' ?
                     <button className='profile-modal-find' onClick={OnNavigate}>
-                        <div className='modal-find-avatar'><Svg src={renderAvatar(title)} className='modal-avatar-helper'  /></div>
+                        <div className='modal-find-avatar'><Svg src={renderAvatar(title)}
+                                                                className='modal-avatar-helper'/></div>
                         <div className='modal-nickname'>{title}</div>
                     </button>
 
 
-
                     :
-                    <div  className='notFoundImage'>
+                    <div className='notFoundImage'>
                         <img src={NotFound}/>
                         <div className='notFoundText'>Пользователь не найден</div>
                     </div>
                 }
-
 
 
             </div>

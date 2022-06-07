@@ -9,6 +9,8 @@ import {compose, createStore} from "redux";
 import { userReducer } from "./modules/userRedux/userReducer";
 import {Profile} from "./modules/profile/Profile";
 import {history} from "./modules/history";
+import {AddPost} from "./modules/profile/UploadPosts/AddPost";
+import {Feed} from "./modules/Feed/Feed";
 
 declare global {
     interface Window {
@@ -33,6 +35,8 @@ function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/page/:username" element={<Profile />} />
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/page/:username/addPost" element={<AddPost/>} />
       </Routes>
     </Provider>
 

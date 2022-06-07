@@ -103,7 +103,7 @@ margin-top: 3%;
 
 }
 .countOfPublications{
-    margin-top: 12%;
+    margin-top: 11.9%;
     margin-left: 10%;
 
 
@@ -111,6 +111,10 @@ margin-top: 3%;
 .countOfSubscribers{
     margin-top: 12%;
     margin-left: 3%;
+    cursor: pointer;
+
+    width: 11%;
+    height: 17%;
 
 }
 .countOfSubscriber{
@@ -129,6 +133,31 @@ margin-top: 3%;
     margin-left: 5%;
     width: 55%;
     height: 55%;
+}
+.followButton{
+
+    position: absolute;
+    margin-left: 10%;
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+    top: 9%;
+    font-weight: 600;
+    font-size: 12px;
+    font-family: 'Mulish', sans-serif;
+
+    background: #FFFFFF;
+    border: 1px solid #EDE5E5;
+    border-radius: 10px;
+
+    display: inline-block;
+
+    width: 14%;
+    height: 7%;
+    line-height: 25px;
+    text-align: center;
+    background:
+            #2D8AEA;
 }
 .subscribeButton{
     position: absolute;

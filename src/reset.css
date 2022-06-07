@@ -1,5 +1,6 @@
 * {
   font-family: 'SF UI Text', serif;
+  cursor: pointer;
 }
 *:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
   all: unset;
@@ -16,7 +17,7 @@
 /* Reapply the pointer cursor for anchor tags */
 a,
 button {
-  cursor: revert;
+  cursor: pointer;
 }
 
 /* Remove list styles (bullets/numbers) */

@@ -5,6 +5,7 @@ import Svg from "react-inlinesvg";
 import {renderAvatar} from "../renderAvatar";
 import '../../../fonts/stylesheet.css'
 // интерфейс для пропсов
+
 interface ModalProps {
     visible: boolean
     title: string

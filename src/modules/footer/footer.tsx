@@ -13,32 +13,45 @@ import {Modal} from "../profile/Modal/Modal";
 import {FindModal} from "./FindModal/FindModal";
 import {IPosts} from "../profile/Profile";
 import {useNavigate} from "react-router-dom";
-
-
+import {shallowEqual, useSelector} from "react-redux";
+import {PROFILEAPILINKS} from "../profile/ProfileApiLinks";
+type IAppState = any;
+let selector = (state: IAppState) => {
+    return {
+        user: {
+            id: state.user.id,
+            username: state.user.username,
+            token: state.user.token
+        },
+    };
+};
 export const Footer = () => {
     const navigate = useNavigate();
-
+    const {user} = useSelector(selector, shallowEqual);
     const [isNavigate, setIsNavigate] = React.useState(false)
     const [requestUser, setRequestUser] = useState<string>("");
     const [isFindLoading, setIsFindLoading] = useState(false)
     const [isFindModal, setFindModal] = React.useState(false)
-    const onFindClose = () => setFindModal(false)
+
+    const onFindClose = () => {
+        setFindModal(false)
+
+    }
+    const homeRedirect = () => {
+   navigate('/')
+
+    }
     const OnNavigateRedirect=()=> {
         setIsNavigate(true)
         onFindClose();
     }
 
 
-    const initFindUser = async (username: string) => {
-        setFindModal(true)
-        let user: string = await findUser(username);
-        setRequestUser(user);
-        return user;
-    }
+
     let redirectTo = (path: string): void => {
         // history.push(path);
         navigate(path);
-        //   window.location.reload();
+        return;
     };
     if (isNavigate){
         redirectTo('/page/'+requestUser);
@@ -47,6 +60,7 @@ export const Footer = () => {
 
     const findSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        setFindModal(true)
         const formData = document.getElementById(
             "findForm"
         ) as HTMLFormElement;
@@ -60,7 +74,28 @@ export const Footer = () => {
             typeof username === "string"
         )
         {
-            await initFindUser(username);
+            let response = await fetch(
+                PROFILEAPILINKS.FIND,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization':'Bearer '+user.token
+                    },
+                    method: "POST",
+                    body: JSON.stringify({username}),
+                }
+            );
+            if (response.ok) {
+                let result = await response.json();
+
+
+                setRequestUser(result['username']);
+                return user;
+            }
+            else {
+                return 'error:404'
+            }
+
         }
 
             };
@@ -68,7 +103,7 @@ export const Footer = () => {
 
     return (
         <div className='footer-style'>
-            <div className='footerLogo'>Одногруппники</div>
+            <button className='footerLogo' onClick={homeRedirect}>Одногруппники</button>
             <form  action="/page"
                    onSubmit={findSubmit}
                    method="post"

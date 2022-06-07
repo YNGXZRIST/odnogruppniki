@@ -5,6 +5,7 @@ import Svg from "react-inlinesvg";
 import {renderAvatar} from "../renderAvatar";
 import {REGISTRATIONLINKS} from "../../registration/RegistrationApiLinks";
 import {userActionTypes} from "../../userRedux/actionTypes";
+import {useNavigate} from "react-router-dom";
 // import '../../../fonts/stylesheet.css'
 // интерфейс для пропсов
 
@@ -19,14 +20,14 @@ interface ModalProps {
 }
 
 export const UploadModal = ({
-                          visible = false,
-                          title = '',
-                          content = '',
-                          footer = '',
+                                visible = false,
+                                title = '',
+                                content = '',
+                                footer = '',
                                 token = '',
-                          onClose,
+                                onClose,
                                 onUpload
-                      }: ModalProps) => {
+                            }: ModalProps) => {
 
     const onKeydown = ({key}: KeyboardEvent) => {
         switch (key) {
@@ -48,42 +49,70 @@ export const UploadModal = ({
     if (!visible) return null
     const fileInput = document.querySelector("#fileId");
 
-    const uploadFile = (file:any ) => {
-        console.log("Uploading file...");
-        const API_ENDPOINT = "https://file.io";
-        const request = new XMLHttpRequest();
-        const formData = new FormData();
+    const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = document.getElementById(
+            "formElem"
+        ) as HTMLFormElement;
+        let newFormData = new FormData(formData);
+        let content = newFormData.get("content");
+        let image = newFormData.get("image");
+        // event.preventDefault();
+        // console.log(content,image);
+        if (
 
-        request.open("POST", API_ENDPOINT, true);
-        request.onreadystatechange = () => {
-            if (request.readyState === 4 && request.status === 200) {
-                console.log(request.responseText);
-            }
-        };
-        formData.append("file", file[0]);
-        request.send(formData);
-    };
+            content !== null
+
+        ) {
+            let response = await fetch('http://localhost/api/profile/post/add_post', {
+
+                headers: {
+
+                    'Authorization': 'Bearer ' + token
+                },
+
+                method: 'POST',
+                body: (newFormData)
+            });
+
+            let result = await response.json();
+            onClose();
 
 
-    function handleFileSelect(evt:any) {
-        let file = evt.target.files;
-        let f = file[0];
+            return;
 
-        if (!f.type.match('image.*')) {
-            alert("Image only please....");
+
         }
-        return f
-        let reader = new FileReader();
-        // Closure to capture the file information.
-        reader.onload = (function(theFile) {
-            return function(e) {
 
 
-            };
-        })(f);
+        const formElem = async (e: any) => {
+            e.preventDefault();
+            const formData = document.getElementById(
+                "formElem"
+            ) as HTMLFormElement;
+            let newFormData = new FormData(formData);
+            let content = newFormData.get("content");
+            let username = newFormData.get("image");
+            let response = await fetch('http://localhost/api/profile/post/add_post', {
 
-        reader.readAsDataURL(f);
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+
+                method: 'POST',
+                body: formData.get('content')
+            });
+
+            let result = await response.json();
+
+            alert(result.message);
+        };
     }
+
+
+
+
 
     return (
         <div className='modal' onClick={onClose}>
@@ -93,22 +122,16 @@ export const UploadModal = ({
                     <span className='modal-close' onClick={onClose}>
             &times;
           </span>
+                    <form id="formElem" onSubmit={submit}>
+                        <input type="text" name="content"/>
+                        Картинка: <input type="file" name="image" accept="image/*"/>
+                        <input type="submit"/>
+                    </form>
                 </div>
-                <form      action="/page" method="post"  className='modal-form' onSubmit={submit} id='UploadForm'>
-                    <div className="container">
-                        <div className="row">
-                            <label>Загрузить один файл:</label>
-                            <input type="file" id="file" name="file" />
-                        </div>
-                        <div className="row">
-                            <span id="output"/>
-                        </div>
-                        <input type={"text"}  name="text" placeholder={"Напишите что-нибудь..."} />
-                    </div>
-                    <button onClick={event => submit}>Отправить даныне</button>
-                </form>
-
             </div>
+            <p id="log"/>
         </div>
-    )
-}
+
+            )
+
+            }

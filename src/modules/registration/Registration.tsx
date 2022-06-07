@@ -49,7 +49,7 @@ export const Registration: React.FC<IProps> = () => {
             'Content-Type': 'application/json'
           },
           method: "POST",
-          body: JSON.stringify({email, password, username ,role:['user']}),
+          body: JSON.stringify({email, password, username ,role:['ROLE_ADMIN']}),
         }
       );
 
@@ -69,10 +69,10 @@ export const Registration: React.FC<IProps> = () => {
          //   window.location.reload();
         };
 
-       // redirectTo(`/`);
+     redirectTo(`/`);
 
       } else {
-        alert("Ошибка HTTP: " + response.status);
+        // alert("Ошибка HTTP: " + response.status);
       }
     }
   };

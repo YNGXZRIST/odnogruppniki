@@ -1,0 +1,30 @@
+.subscribeUser{
+    height: 90px;
+    width: 90%;
+    border-radius: 12px;
+    /*background: rgba(57, 53, 53, 0.42);*/
+    margin-bottom: 3%;
+    margin-left: 5%;
+    display: flex;
+    border: 1px solid #FCC138;
+
+}
+.subscribe-avatar{
+    margin-left: 5%;
+    margin-top:1%;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    border: 1px solid #FCC138;
+
+
+}
+.subscribe-username{
+    font-size: 32px;
+    margin-left: 5%;
+    margin-top: 2%;
+}
+.subscribeUser:hover{
+  box-shadow: 0 0 5px 5px rgba(252, 193, 56, 0.5);
+    cursor: pointer;
+}
