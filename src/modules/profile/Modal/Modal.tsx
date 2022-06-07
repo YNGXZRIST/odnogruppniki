@@ -13,6 +13,7 @@ interface ModalProps {
     content: ReactElement | string
     footer: ReactElement | string
     onClose: () => void
+    deletePost:()=>void
 }
 
 export const Modal = ({
@@ -22,6 +23,7 @@ export const Modal = ({
                           footer = '',
                           username = '',
                           onClose,
+                          deletePost
                       }: ModalProps) => {
     // создаем обработчик нажатия клавиши Esc
     const onKeydown = ({key}: KeyboardEvent) => {
@@ -59,8 +61,9 @@ export const Modal = ({
 
                     <div className='modal-login' > {username}</div>
                 <div className='modal-title'> {title}</div>
-
+                <div className='deletePost' onClick={deletePost} >Удалить пост</div>
             </div>
+
         </div>
     )
 }

@@ -86,7 +86,7 @@ function Profile() {
   const [requestSubscription, setRequestSubscription] = useState<ISubscribe[]>(
     getInitialSubscribe()
   );
-
+  const [currentId, setCurrentId] = useState<number | undefined>();
   const [requestPosts, setRequestPosts] = useState<IPosts[]>(getInitialPosts());
   const [isUploadModal, setUploadModal] = React.useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -142,52 +142,15 @@ function Profile() {
       redirectTo(`/`);
     }
   };
-  // const fetchPosts = async () => {
-  //   if (user.username === username) {
-  //     let response = await fetch(PROFILEAPILINKS.LOAD_POSTS, {
-  //       headers: {
-  //         Authorization: "Bearer " + user.token,
-  //       },
-  //       method: "GET",
-  //     });
-  //     if (response.ok) {
-  //       let result = await response.json();
-  //       setRequestCountOfPosts(result["posts"].length);
-  //       setRequestPosts(result["posts"]);
-  //       // console.log(requestPosts);
-  //       return;
-  //     }
-  //   } else {
-  //     let response = await fetch(
-  //       PROFILEAPILINKS.LOAD_OTHER_USER_POSTS + requestUserId,
-  //       {
-  //         headers: {
-  //           Authorization: "Bearer " + user.token,
-  //         },
-  //         method: "GET",
-  //       }
-  //     );
-  //     if (response.ok) {
-  //       let result = await response.json();
-  //       console.log(result);
-  //       setRequestCountOfPosts(result["posts"].length);
-  //       setRequestPosts(result["posts"]);
-  //
-  //       setIsPostLoading(true);
-  //       // alert("imhere");
-  //       return;
-  //     }
-  //     // alert("imhere");
-  //   }
-  // };
-  const handleClickCheckbox = (source: string, title: string) => {
+
+  const handleClickCheckbox = (source: string, title: string,id:number) => {
     requestPosts?.map((post) => {
       let postUrl = "http://localhost" + post.path;
 
       if (postUrl === source) {
 
         setCurrentImage(postUrl);
-
+        setCurrentId(id);
         setCurrentTitle(title);
         console.log(title);
       }
@@ -214,7 +177,7 @@ function Profile() {
           alt="post"
           className="postSource"
           onClick={() => {
-            handleClickCheckbox(postUrl, title!);
+            handleClickCheckbox(postUrl, title!,postItem.id!);
           }}
         />
       </div>
@@ -248,6 +211,24 @@ function Profile() {
   // useEffect(() => {
   //   follow();
   // }, [username]);
+  const deletePost = async (id:number) => {
+    let response = await fetch(PROFILEAPILINKS.DELETE + currentId, {
+      headers: {
+        Authorization: "Bearer " + user.token,
+      },
+      method: "GET",
+
+    });
+    if (response.ok) {
+      let result = await response.json();
+
+      // eslint-disable-next-line array-callback-return
+
+
+    }
+    setModal(false);
+  }
+
   console.log(requestPosts);
   return (
     <div className="body">
@@ -346,6 +327,7 @@ function Profile() {
               title={String(currentTitle)}
               content={<img src={currentImage} />}
               username={requestUsername}
+              deletePost={()=>deletePost(currentId!)}
               footer={<button onClick={onClose}>Закрыть</button>}
               onClose={onClose}
             />

@@ -11,7 +11,7 @@ services:
     image: classmates
     restart: always
     ports:
-            - 80:2020
+      - 80:2020
       - 8000:8000
     networks:
       - db-network

@@ -146,7 +146,7 @@ export const Registration: React.FC<IProps> = () => {
                   placeholder="6+ символов"
                 />
               </div>
-              {error? <div >Неверно введены данные</div>:null}
+              {error? <div className='regError' >Неверно введены данные</div>:null}
               <button className="vxodButton">Зарегистрироваться</button>
               {/*<p className="orTitle">Или</p>*/}
               {/*<div className="googleButton">*/}

@@ -154,3 +154,7 @@ margin-top: -45%;
         transform: translateY(0);
     }
 }
+.deletePost{
+    /*margin-left: -15%;*/
+    margin-left: 80%;
+}
