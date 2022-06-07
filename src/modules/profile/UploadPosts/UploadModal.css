@@ -1,5 +1,23 @@
-.modal-form{
 
+.modal-upload-dialog {
+    min-width: 60%;
+    width: 100%;
+    min-height: 40%;
+    max-width: 550px;
+    background: white;
+    position: relative;
+    margin: 0 20px;
+    max-height: calc(100vh - 40px);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slide-in;
+    animation-duration: 0.5s;
+    border-radius: 12px;
 }
 .input-container{
     margin-top: 30%;
@@ -10,6 +28,35 @@
 .modal-title-input{
 
 }
-.row{
+.formElement{
+    width: 100%;
+    margin-top: 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /*background: #2D8AEA;*/
+}
+#formElem{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-left: 28%;
+}
+.inputContent{
+color: #575757;
+        margin-top: 1%;
+    /*background: #FCC138;*/
+    width: 40%;
+    padding-left: 2%;
+    border: 1px solid black;
+    border-radius: 24px;
+    height: 80px;
+
+}
+#subButton{
+    margin-top: 1%;
+    margin-left: 13%;
 
 }

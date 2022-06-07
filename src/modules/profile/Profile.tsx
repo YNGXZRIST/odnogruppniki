@@ -30,6 +30,8 @@ export interface IPosts {
   path: string | undefined;
   id: number | undefined;
   userId: number | undefined;
+
+
 }
 
 export interface ISubscribe {
@@ -120,7 +122,9 @@ function Profile() {
       requestSubscribe.map((subscribe) => {
         if (subscribe.username === username) {
           setIsFollow(true);
+
         }
+
       });
       console.log(result["subscribers"]);
       setIsLoading(true);
@@ -172,15 +176,16 @@ function Profile() {
       // alert("imhere");
     }
   };
-  const handleClickCheckbox = (
-    source: string | undefined,
-    title: string | undefined
-  ) => {
+  const handleClickCheckbox = (source: string, title: string) => {
     requestPosts?.map((post) => {
-      let postUrl = " http://localhost" + post.path;
+      let postUrl = "http://localhost" + post.path;
+
       if (postUrl === source) {
+
         setCurrentImage(postUrl);
+
         setCurrentTitle(title);
+        console.log(title);
       }
       return post;
     });
@@ -205,7 +210,7 @@ function Profile() {
           alt="post"
           className="postSource"
           onClick={() => {
-            handleClickCheckbox(postUrl, title);
+            handleClickCheckbox(postUrl, title!);
           }}
         />
       </div>
@@ -221,8 +226,8 @@ function Profile() {
     if (response.ok) {
       let result = await response.json();
       console.log(result);
-      setRequestCountOfPosts(result["posts"].length);
-      setRequestPosts(result["posts"]);
+      // setRequestCountOfPosts(result["posts"].length);
+      // setRequestPosts(result["posts"]);
 
       setIsPostLoading(true);
       // alert("imhere");
@@ -236,9 +241,9 @@ function Profile() {
   useEffect(() => {
     fetchPosts();
   }, [username]);
-  useEffect(() => {
-    follow();
-  }, [username]);
+  // useEffect(() => {
+  //   follow();
+  // }, [username]);
   console.log(requestPosts);
   return (
     <div className="body">
@@ -271,7 +276,7 @@ function Profile() {
                 </div>
               ) : (
                 <div style={{ display: "flex" }}>
-                  {isLoading && !isFollow ? (
+                  {isLoading && isFollow ? (
                     <div className="subscribeButton">
                       <img
                         className="notSubscribe"
@@ -280,7 +285,7 @@ function Profile() {
                         alt="notSubscribe"
                       />
                     </div>
-                  ) : isFollow ? (
+                  ) : isLoading && !isFollow ? (
                     <div className="followButton">
                       <img
                         className="notSubscribe"
@@ -304,7 +309,8 @@ function Profile() {
             </div>
             <div
               className="countOfSubscribers"
-              onClick={() => setIsSubscribeModal(true)}>
+              onClick={() => setIsSubscribeModal(true)}
+            >
               <div> {requestSubscribe.length} подписчиков</div>
             </div>
             <SubscribeModal

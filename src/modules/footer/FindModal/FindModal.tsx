@@ -42,6 +42,7 @@ export const FindModal = ({
 
     // если компонент невидим, то не отображаем его
     if (!visible) return null
+
     // или возвращаем верстку модального окна
     return (
         <div className='modal-findPage' onClick={onClose}>
@@ -53,7 +54,7 @@ export const FindModal = ({
             &times;
           </span>
                 </div>
-                {title !== 'error:404' ?
+                {title ?
                     <button className='profile-modal-find' onClick={OnNavigate}>
                         <div className='modal-find-avatar'><Svg src={renderAvatar(title)}
                                                                 className='modal-avatar-helper'/></div>

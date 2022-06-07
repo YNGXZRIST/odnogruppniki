@@ -1,6 +1,6 @@
 import React, {ReactElement} from 'react'
 import ReactDOM from 'react-dom'
-import '../Modal/Modal.css'
+import './UploadModal.css'
 import Svg from "react-inlinesvg";
 import {renderAvatar} from "../renderAvatar";
 import {REGISTRATIONLINKS} from "../../registration/RegistrationApiLinks";
@@ -8,7 +8,7 @@ import {userActionTypes} from "../../userRedux/actionTypes";
 import {useNavigate} from "react-router-dom";
 // import '../../../fonts/stylesheet.css'
 // интерфейс для пропсов
-
+import '../Modal/Modal.css'
 interface ModalProps {
     visible: boolean
     title: string
@@ -116,19 +116,23 @@ export const UploadModal = ({
 
     return (
         <div className='modal' onClick={onClose}>
-            <div className='modal-dialog' onClick={e => e.stopPropagation()}>
+            <div className='modal-upload-dialog' onClick={e => e.stopPropagation()}>
                 <div className='modal-header'>
-
+                </div>
                     <span className='modal-close' onClick={onClose}>
             &times;
           </span>
-                    <form id="formElem" onSubmit={submit}>
-                        <input type="text" name="content"/>
-                        Картинка: <input type="file" name="image" accept="image/*"/>
-                        <input type="submit"/>
-                    </form>
+                    <div className='formElement'>
+                        <form id="formElem" onSubmit={submit}>
+
+                           <input type="file" id='content' name="image" accept="image/*" />
+                            <input type="text" name="content" placeholder='описание...'className='inputContent'/>
+                            <input type="submit" id='subButton'/>
+                        </form>
+                    </div>
+
                 </div>
-            </div>
+
             <p id="log"/>
         </div>
 

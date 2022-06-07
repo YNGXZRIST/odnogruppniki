@@ -74,33 +74,40 @@ export const Footer = () => {
             typeof username === "string"
         )
         {
-            let response = await fetch(
-                PROFILEAPILINKS.FIND,
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization':'Bearer '+user.token
-                    },
-                    method: "POST",
-                    body: JSON.stringify({username}),
+            if (username.length){
+                let response = await fetch(
+                    PROFILEAPILINKS.FIND,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization':'Bearer '+user.token
+                        },
+                        method: "POST",
+                        body: JSON.stringify({username}),
+                    }
+                );
+                if (response.ok) {
+                    let result = await response.json();
+
+
+                    setRequestUser(result['username']);
+                    return user;
                 }
-            );
-            if (response.ok) {
-                let result = await response.json();
+                else {
+                    return 'error:404'
+                }
+            }else {
 
+                return 'error:404' }
 
-                setRequestUser(result['username']);
-                return user;
-            }
-            else {
-                return 'error:404'
-            }
 
         }
 
             };
 
-
+   const redirectToCurrentUser=()=>{
+       navigate('/page/'+user.username);
+    }
     return (
         <div className='footer-style'>
             <button className='footerLogo' onClick={homeRedirect}>Одногруппники</button>
@@ -116,7 +123,7 @@ export const Footer = () => {
 
             <button className='messageButton'><img src={home} alt='home' className='homeFooterImage' onClick={event =>redirectTo('/feed')}/></button>
             {/*<button className='likeButton'><img src={hearth} alt='like' className='likeFooterImage'/></button>*/}
-            <button className='profileButton'><img src={userFooter} alt='profile' className='profileFooterImage'/>
+            <button className='profileButton'><img src={userFooter} alt='profile' className='profileFooterImage' onClick={redirectToCurrentUser}/>
             </button>
             <FindModal
                 visible={isFindModal}
