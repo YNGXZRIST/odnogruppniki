@@ -258,7 +258,7 @@ function Profile() {
                 </div>
               ) : (
                 <div style={{ display: "flex" }}>
-                  {isLoading && isFollow ? (
+                  {isLoading && !isFollow ? (
                     <div className="subscribeButton">
                       <img
                         className="notSubscribe"
