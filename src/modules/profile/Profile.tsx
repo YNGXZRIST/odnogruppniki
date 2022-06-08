@@ -267,7 +267,7 @@ function Profile() {
                         alt="notSubscribe"
                       />
                     </div>
-                  ) : isLoading && !isFollow ? (
+                  ) : isLoading && isFollow ? (
                     <div className="followButton">
                       <img
                         className="notSubscribe"
