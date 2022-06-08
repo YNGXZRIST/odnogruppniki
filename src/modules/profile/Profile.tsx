@@ -121,9 +121,11 @@ function Profile() {
       setRequestCountOfPosts(result["posts"].length);
       setRequestPosts(result["posts"]);
       // eslint-disable-next-line array-callback-return
+
       requestSubscription.map((subscribe) => {
-    // console.log(subscribe)
+
         if (subscribe.username === user.username) {
+
              // alert(true)
           setIsFollow(true);
         }

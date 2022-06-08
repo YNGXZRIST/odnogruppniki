@@ -7,6 +7,7 @@ import { shallowEqual, useSelector } from "react-redux";
 import { Modal } from "../profile/Modal/Modal";
 import {renderAvatar} from "../profile/renderAvatar";
 import Svg from "react-inlinesvg";
+import {useNavigate} from "react-router-dom";
 type IAppState = any;
 interface IPosts {
     content: string | undefined;
@@ -36,7 +37,7 @@ function Feed() {
         username:undefined
     },
   ];
-
+const navigate=useNavigate();
   const { user } = useSelector(selector, shallowEqual);
   const [isLoading, setIsLoading] = useState(false);
   const [requestPosts, setRequestPosts] = useState<IPosts[]>(getInitialPosts());
@@ -67,7 +68,7 @@ function Feed() {
     let title = postItem.content;
     let postUrl = "http://localhost" + postItem.path;
     return (
-      <button  className='card'>
+      <button  className='card' onClick={()=>navigate(('/page/'+postItem.username!))}>
           <div className='footer'>
               <Svg src={renderAvatar(postItem.username!)}
                    className='footer-avatar'/>
