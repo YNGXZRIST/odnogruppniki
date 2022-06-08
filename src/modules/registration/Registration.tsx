@@ -23,7 +23,7 @@ let selector = (state: IAppState) => {
   };
 };
 export const Registration: React.FC<IProps> = () => {
-  const { user } = useSelector(selector, shallowEqual);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState<number | undefined>();
@@ -64,16 +64,14 @@ export const Registration: React.FC<IProps> = () => {
           payload: { id, username: requestUsername },
         });
        let redirectTo = (path: string): void => {
-          // history.push(path);
           navigate(path);
-         //   window.location.reload();
         };
 
      redirectTo(`/`);
 
       } else {
         setError(response.status);
-        alert(response.status)
+
 
       }
     }

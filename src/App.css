@@ -196,6 +196,7 @@
   position: absolute;
   width: 297px;
   height: 40px;
+
   margin-top: 70px;
 
   background: rgba(186, 107, 169, 0.6);
@@ -221,6 +222,11 @@
 }
 .vxodButton:hover {
   background: rgba(173, 87, 131, 0.6);
+}
+.regError{
+  font-size:16px;
+  color: indianred;
+  margin-top: 12%;
 }
 .orTitle {
   position: absolute;

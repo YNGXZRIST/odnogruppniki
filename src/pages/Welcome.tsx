@@ -3,7 +3,7 @@ import google from "../images/google.svg";
 import girls from "../images/девчули1.svg";
 import "../reset.css";
 import {shallowEqual, useDispatch, useSelector} from "react-redux";
-import React from "react";
+import React, {useState} from "react";
 import {REGISTRATIONLINKS} from "../modules/registration/RegistrationApiLinks";
 import {userActionTypes} from "../modules/userRedux/actionTypes";
 import {history} from "../modules/history";
@@ -23,6 +23,7 @@ let selector = (state: IAppState) => {
 };
 const Welcome = () => {
   const { user } = useSelector(selector, shallowEqual);
+  const [error, setError] = useState<number | undefined>();
   const dispatch = useDispatch();
 const navigate=useNavigate()
   const submit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -72,7 +73,7 @@ const navigate=useNavigate()
         redirectTo(`/page/`+requestUsername);
 
       } else {
-        // alert("Ошибка HTTP: " + response.status);
+        setError(response.status);
       }
     }
   };
@@ -136,6 +137,7 @@ const navigate=useNavigate()
                 placeholder="6+ символов "
               />
             </div>
+              {error? <div className='regError' >Неверно введены данные</div>:null}
             <button className="vxodButton">Войти</button>
             {/*<p className="orTitle">Или</p>*/}
             {/*<div className="googleButton">*/}

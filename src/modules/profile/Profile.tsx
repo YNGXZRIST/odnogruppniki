@@ -30,9 +30,7 @@ export interface IPosts {
   path: string | undefined;
   id: number | undefined;
   userId: number | undefined;
-  username:string|undefined;
-
-
+  username: string | undefined;
 }
 
 export interface ISubscribe {
@@ -58,7 +56,7 @@ function Profile() {
       path: undefined,
       id: undefined,
       userId: undefined,
-      username:undefined
+      username: undefined,
     },
   ];
   const getInitialSubscribe = (): ISubscribe[] => [
@@ -123,12 +121,12 @@ function Profile() {
       setRequestCountOfPosts(result["posts"].length);
       setRequestPosts(result["posts"]);
       // eslint-disable-next-line array-callback-return
-      requestSubscribe.map((subscribe) => {
+      requestSubscription.map((subscribe) => {
+    // console.log(subscribe)
         if (subscribe.username === user.username) {
+             // alert(true)
           setIsFollow(true);
-
         }
-
       });
       console.log(result["subscribers"]);
       setIsLoading(true);
@@ -143,12 +141,11 @@ function Profile() {
     }
   };
 
-  const handleClickCheckbox = (source: string, title: string,id:number) => {
+  const handleClickCheckbox = (source: string, title: string, id: number) => {
     requestPosts?.map((post) => {
       let postUrl = "http://localhost" + post.path;
 
       if (postUrl === source) {
-
         setCurrentImage(postUrl);
         setCurrentId(id);
         setCurrentTitle(title);
@@ -177,12 +174,15 @@ function Profile() {
           alt="post"
           className="postSource"
           onClick={() => {
-            handleClickCheckbox(postUrl, title!,postItem.id!);
+            handleClickCheckbox(postUrl, title!, postItem.id!);
           }}
         />
       </div>
     );
   };
+  const ErrorCheck=()=>{
+    return(alert('Файл слишком большой.Попробуйте другой'))
+  }
   const follow = async () => {
     let response = await fetch(PROFILEAPILINKS.FOLLOW_LINK + requestUserId, {
       headers: {
@@ -193,12 +193,13 @@ function Profile() {
     if (response.ok) {
       let result = await response.json();
       console.log(result);
-      // setRequestCountOfPosts(result["posts"].length);
-      // setRequestPosts(result["posts"]);
 
       setIsPostLoading(true);
-      navigate('/page/'+requestUserId)
-      // alert("imhere");
+      // alert(result['username'])
+      navigate("/page/" + result["username"]);
+      // setRequestSubscribe(result["subscribers"].length);
+      // setRequestSubscription(result["subscriptions"].length);
+
       return;
     }
   };
@@ -206,29 +207,21 @@ function Profile() {
   useEffect(() => {
     fetchUser();
   }, [username]);
-  // useEffect(() => {
-  //   fetchPosts();
-  // }, [username]);
-  // useEffect(() => {
-  //   follow();
-  // }, [username]);
-  const deletePost = async (id:number) => {
+
+  const deletePost = async (id: number) => {
     let response = await fetch(PROFILEAPILINKS.DELETE + currentId, {
       headers: {
         Authorization: "Bearer " + user.token,
       },
       method: "GET",
-
     });
     if (response.ok) {
       let result = await response.json();
 
       // eslint-disable-next-line array-callback-return
-
-
     }
     setModal(false);
-  }
+  };
 
   console.log(requestPosts);
   return (
@@ -258,6 +251,7 @@ function Profile() {
                     footer={<button onClick={onCloseUpload}>Закрыть</button>}
                     onClose={onCloseUpload}
                     onUpload={onUpload}
+                    getError={ErrorCheck}
                   />
                 </div>
               ) : (
@@ -328,9 +322,11 @@ function Profile() {
               title={String(currentTitle)}
               content={<img src={currentImage} />}
               username={requestUsername}
-              deletePost={()=>deletePost(currentId!)}
+              currentUsername={user.username}
+              deletePost={() => deletePost(currentId!)}
               footer={<button onClick={onClose}>Закрыть</button>}
               onClose={onClose}
+
             />
           </button>
         ) : !isPostLoading ? (
