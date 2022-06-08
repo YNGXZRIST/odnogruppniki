@@ -197,6 +197,7 @@ function Profile() {
       // setRequestPosts(result["posts"]);
 
       setIsPostLoading(true);
+      navigate('/page/'+requestUserId)
       // alert("imhere");
       return;
     }
