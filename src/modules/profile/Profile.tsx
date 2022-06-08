@@ -123,12 +123,13 @@ function Profile() {
       // eslint-disable-next-line array-callback-return
 
       requestSubscription.map((subscribe) => {
-
         if (subscribe.username === user.username) {
 
-             // alert(true)
+
           setIsFollow(true);
+          return;
         }
+
       });
       console.log(result["subscribers"]);
       setIsLoading(true);
@@ -201,7 +202,7 @@ function Profile() {
       navigate("/page/" + result["username"]);
       // setRequestSubscribe(result["subscribers"].length);
       // setRequestSubscription(result["subscriptions"].length);
-
+      alert('вы подписались или отписались');
       return;
     }
   };

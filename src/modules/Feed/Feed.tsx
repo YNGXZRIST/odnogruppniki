@@ -56,11 +56,11 @@ const navigate=useNavigate();
     } else {
       let redirectTo = (path: string): void => {
         // history.push(path);
-        // navigate(path);
+         navigate(path);
         //   window.location.reload();
       };
 
-      // redirectTo(`/`);
+      redirectTo(`/`);
     }
   };
 
